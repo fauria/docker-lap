@@ -1,6 +1,6 @@
 # fauria/lap
 
-![alt text](https://googledrive.com/host/0B7q6BLMXak9VfkpQY3YzNldlSmtxRTZCMEtEVlhhR3QtMFc3aEYzVzA5YlM5MWw5OXhqV0U/docker_139x115.png)![alt text](https://googledrive.com/host/0B7q6BLMXak9VfkpQY3YzNldlSmtxRTZCMEtEVlhhR3QtMFc3aEYzVzA5YlM5MWw5OXhqV0U/docker_fauria_161x115.png)
+![docker_logo](https://googledrive.com/host/0B7q6BLMXak9VfkpQY3YzNldlSmtxRTZCMEtEVlhhR3QtMFc3aEYzVzA5YlM5MWw5OXhqV0U/docker_139x115.png)![docker_fauria_logo](https://googledrive.com/host/0B7q6BLMXak9VfkpQY3YzNldlSmtxRTZCMEtEVlhhR3QtMFc3aEYzVzA5YlM5MWw5OXhqV0U/docker_fauria_161x115.png)
 
 This Docker container implements a LAP stack, as well as some popular PHP modules and a Postfix service to allow sending emails through PHP [mail()](http://php.net/manual/en/function.mail.php) function.
 
@@ -29,9 +29,9 @@ Includes the following components:
 	* php-xml
 	* php-xmlrpc
 
-### Installation
+### Installation from [Docker registry hub](https://registry.hub.docker.com/u/fauria/lap/).
 
-You can download the image with the following command:
+You can download the image using the following command:
 
 ```bash
 docker pull fauria/lap
