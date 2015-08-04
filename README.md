@@ -64,4 +64,5 @@ b. Running a container for production, with xxx
 docker ...
 
 TODO
+Use 'LogLevel debug' to get a backtrace
 -->
