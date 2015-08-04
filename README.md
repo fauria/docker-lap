@@ -65,4 +65,8 @@ docker ...
 
 TODO
 Use 'LogLevel debug' to get a backtrace
+
+Perms:
+id apache
+uid=48(apache) gid=48(apache) groups=48(apache)
 -->
