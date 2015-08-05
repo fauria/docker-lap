@@ -64,4 +64,4 @@ The user and group owner id for this directory are both 48 (`uid=48(apache) gid=
 `docker run --rm -p 8080:80 -e LOG_STDOUT=true -e LOG_STDERR=true -e LOG_LEVEL=debug -v /my/data/directory:/var/www/html fauria/lap`
 
 #### 3. Create a container linking to another [MySQL container](https://registry.hub.docker.com/_/mysql/):
-`docker run -d --link my-mysql-container:mysql -p 8080:80 -e LOG_STDOUT=true -e LOG_STDERR=true -v /my/data/directory:/var/www/html -v /my/logs/directory:/var/log/httpd --name my-lap-container fauria/lap`
+`docker run -d --link my-mysql-container:mysql -p 8080:80 -v /my/data/directory:/var/www/html -v /my/logs/directory:/var/log/httpd --name my-lap-container fauria/lap`
