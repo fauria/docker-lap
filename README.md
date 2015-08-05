@@ -39,7 +39,7 @@ You can download the image using the following command:
 docker pull fauria/lap
 ```
 
-Envirnonment variables
+Environment variables
 ----
 
 This image uses environment variables to allow the configuration of some parameteres at run time:
