@@ -31,12 +31,14 @@ RUN yum install -y \
 
 ENV LOG_STDOUT **Boolean**
 ENV LOG_STDERR **Boolean**
-ENV DISALLOW_OVERRIDE **Boolean**
+ENV LOG_LEVEL warn
+ENV ALLOW_OVERRIDE All
 ENV DATE_TIMEZONE UTC
 
 COPY index.php /var/www/html/
 COPY run-lap.sh /usr/sbin/
 RUN chmod +x /usr/sbin/run-lap.sh
+RUN chown -R apache:apache /var/www/html
 
 VOLUME /var/www/html
 VOLUME /var/log/httpd

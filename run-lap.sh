@@ -10,7 +10,6 @@ function exportBoolean {
 
 exportBoolean LOG_STDOUT
 exportBoolean LOG_STDERR
-exportBoolean DISALLOW_OVERRIDE
 
 if [ $LOG_STDERR ]; then
     /usr/bin/ln -sf /dev/stderr /var/log/httpd/error_log
@@ -18,9 +17,12 @@ else
 	LOG_STDERR='No.'
 fi
 
-if [ ! $DISALLOW_OVERRIDE ]; then
+if [ $ALLOW_OVERRIDE == 'All' ]; then
     /usr/bin/sed -i 's/AllowOverride\ None/AllowOverride\ All/g' /etc/httpd/conf/httpd.conf
-    DISALLOW_OVERRIDE='No.'
+fi
+
+if [ $LOG_LEVEL != 'warn' ]; then
+    /usr/bin/sed -i "s/LogLevel\ warn/LogLevel\ ${LOG_LEVEL}/g" /etc/httpd/conf/httpd.conf
 fi
 
 # stdout server info:
@@ -36,10 +38,11 @@ cat << EOB
 
     SERVER SETTINGS
     ---------------
-    · Redirect Apache access_log to STDOUT: No.
-    · Redirect Apache error_log to STDERR: $LOG_STDERR
-    · Disallow override: $DISALLOW_OVERRIDE
-    · PHP date timezone: $DATE_TIMEZONE
+    · Redirect Apache access_log to STDOUT [LOG_STDOUT]: No.
+    · Redirect Apache error_log to STDERR [LOG_STDERR]: $LOG_STDERR
+    · Log Level [LOG_LEVEL]: $LOG_LEVEL
+    · Allow override [ALLOW_OVERRIDE]: $ALLOW_OVERRIDE
+    · PHP date timezone [DATE_TIMEZONE]: $DATE_TIMEZONE
 
 EOB
 else
@@ -53,4 +56,9 @@ fi
 /usr/sbin/postfix start
 
 # Run Apache:
-/usr/sbin/apachectl -DFOREGROUND -k start -e debug
+if [ $LOG_LEVEL == 'debug' ]; then
+    /usr/sbin/apachectl -DFOREGROUND -k start -e debug
+else
+    &>/dev/null /usr/sbin/apachectl -DFOREGROUND -k start
+fi
+
