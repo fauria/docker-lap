@@ -36,37 +36,32 @@ You can download the image using the following command:
 ```bash
 docker pull fauria/lap
 ```
-<!--
-### Volumes and variables
 
-This image makes use of some environment variables to allow the configuration of some parameteres at run time.
+### Envirnonment variables
 
-This is [on GitHub](https://github.com/jbt/markdown-editor) so let me know if I've b0rked it somewhere.
+This image uses environment variables to allow the configuration of some parameteres at run time:
 
+Variable | Default value | Possible values | Description
+--- | --- | --- | ---
+`LOG_STDOUT` |  | Any string to enable, empty string or not defined to disable. | Output Apache access log through STDOUT, so that it can be accessed through the [container logs](https://docs.docker.com/reference/commandline/logs/).
+`LOG_STDERR` |  | Any string to enable, empty string or not defined to disable. | Output Apache error log through STDERR, so that it can be accessed through the [container logs](https://docs.docker.com/reference/commandline/logs/).
+`LOG_LEVEL` | warn | debug, info, notice, warn, error, crit, alert, emerg | Value for Apache's [LogLevel directive](http://httpd.apache.org/docs/2.4/en/mod/core.html#loglevel).
+`ALLOW_OVERRIDE` | All | All, None | Value for Apache's [AllowOverride directive](http://httpd.apache.org/docs/2.4/en/mod/core.html#allowoverride). Used to enable (`All`) or disable (`None`) the usage of an `.htaccess` file.
+`DATE_TIMEZONE` | UTC | Any of PHP's [supported timezones](http://php.net/manual/en/timezones.php) | Set php.ini default date.timezone directive.
 
-Props to Mr. Doob and his [code editor](http://mrdoob.com/projects/code-editor/), from which
-the inspiration to this, and some handy implementation hints, came.
+### Exposed port and volumnes
 
-The root directory for the website files is /.../
+The image exposes port `80` and exports two volumes: `/var/log/httpd`, which contains Apache's logs, and `/var/www/html`, used as Apache's [DocumentRoot directory](http://httpd.apache.org/docs/2.4/en/mod/core.html#documentroot). 
 
-The container exposes port 80.
+The user and group owner id for this directory are both 48 (`uid=48(apache) gid=48(apache) groups=48(apache)`).
 
-You can customize this settings at run time, as describes in the following:
+### Use cases
 
-3. Use cases
+#### 1. Create a temporary container for testing purposes:
+`docker run --rm fauria/lap`
 
-a. Running a temporary container for testing purposes.
+#### 2. Create a temporary container to debug a web app:
+`docker run --rm -p 8080:80 -e LOG_STDOUT=true -e LOG_STDERR=true -e LOG_LEVEL=debug -v /my/data/directory:/var/www/html fauria/lap`
 
-docker ...
-
-b. Running a container for production, with xxx
-
-docker ...
-
-TODO
-Use 'LogLevel debug' to get a backtrace
-
-Perms:
-id apache
-uid=48(apache) gid=48(apache) groups=48(apache)
--->
+#### 3. Create a container linking to another [MySQL container](https://registry.hub.docker.com/_/mysql/):
+`docker run -d --link my-mysql-container:mysql -p 8080:80 -e LOG_STDOUT=true -e LOG_STDERR=true -v /my/data/directory:/var/www/html -v /my/logs/directory:/var/log/httpd --name my-lap-container fauria/lap`
