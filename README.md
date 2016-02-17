@@ -5,6 +5,8 @@ fauria/lap
 
 This Docker container implements a LAP stack, as well as some popular PHP modules and a Postfix service to allow sending emails through PHP [mail()](http://php.net/manual/en/function.mail.php) function.
 
+If you are looking for a modern, developer friendly container for your latest app, maybe [fauria/lamp](https://hub.docker.com/r/fauria/lamp) suits your needs better.
+
 Includes the following components:
 
  * Centos 7 base image.
