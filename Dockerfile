@@ -8,6 +8,7 @@ LABEL Description="Linux + Apache 2.4 + PHP 5.4. CentOS 7 based. Includes .htacc
 	Version="1.0"
 
 RUN yum -y update && yum clean all
+RUN yum -y install epel-release && yum clean all
 RUN yum -y install httpd && yum clean all
 RUN yum install -y \
 	httpd \
@@ -28,6 +29,7 @@ RUN yum install -y \
 	php-recode \
 	php-snmp \
 	php-soap \
+        php-mcrypt \
 	php-xml \
 	php-xmlrpc
 
