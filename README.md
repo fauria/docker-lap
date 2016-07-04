@@ -109,3 +109,11 @@ Use cases
 ```
 	docker run -d --link my-mysql-container:mysql -p 8080:80 -v /my/data/directory:/var/www/html -v /my/logs/directory:/var/log/httpd --name my-lap-container fauria/lap
 ```
+
+4. Run
+
+example for my website:
+
+```
+docker run -v /data/www/drupal001/:/var/www/html -v /data/web_files/drupal001/files:/data/web_files/drupal001/files -p 60081:80 --rm --name=dp01 xa/lap
+```
