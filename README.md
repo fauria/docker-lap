@@ -24,6 +24,8 @@ Includes the following components:
 	* php-odbc
 	* php-pdo
 	* php-pecl-memcache
+	* php-pecl-zendopcache
+	* php-mcrypt
 	* php-pgsql
 	* php-pspell
 	* php-recode
