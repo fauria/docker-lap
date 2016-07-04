@@ -24,6 +24,7 @@ RUN yum install -y \
 	php-odbc \
 	php-pdo \
 	php-pecl-memcache \
+	php-pecl-zendopcache \
 	php-pgsql \
 	php-pspell \
 	php-recode \
