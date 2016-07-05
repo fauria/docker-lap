@@ -115,7 +115,7 @@ Use cases
 example for my website:
 
 ```
-docker run -v /data/www/drupal001/:/var/www/html \ 
+docker run -v /data/www/drupal001/:/var/www/html \
            -v /data/web_files/drupal001/files:/data/web_files/drupal001/files \
            -v /opt/log/httpd:/var/log/httpd \
            -p 60081:80 --rm --name=dp01 xa/lap
