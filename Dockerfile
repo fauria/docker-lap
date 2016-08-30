@@ -9,30 +9,33 @@ LABEL Description="Linux + Apache 2.4 + PHP 5.4. CentOS 7 based. Includes .htacc
 
 RUN yum -y update && yum clean all
 RUN yum -y install epel-release && yum clean all
-RUN yum -y install httpd && yum clean all
+
+## Add new repo
+RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
+RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+
+RUN yum clean all
+RUN yum install -y httpd vim postfix mariadb 
+
+# Install php
 RUN yum install -y \
-	httpd \
-	postfix \
-	php \
-	php-common \
-	php-dba \
-	php-gd \
-	php-intl \
-	php-ldap \
-	php-mbstring \
-	php-mysqlnd \
-	php-odbc \
-	php-pdo \
-	php-pecl-memcache \
-	php-pecl-zendopcache \
-	php-pgsql \
-	php-pspell \
-	php-recode \
-	php-snmp \
-	php-soap \
-        php-mcrypt \
-	php-xml \
-	php-xmlrpc
+	php55w \
+	php55w-common \
+	php55w-cli \
+	php55w-gd \
+	php55w-intl \
+	php55w-ldap \
+	php55w-mbstring \
+	php55w-mysqlnd \
+	php55w-pdo \
+	php55w-soap \
+	php55w-mcrypt \
+	php55w-ldap \
+	php55w-xml \
+	php55w-xmlrpc \
+	php55w-opcache \
+	php55w-pecl-memcache \
+	php55w-pecl-igbinary
 
 ENV LOG_STDOUT **Boolean**
 ENV LOG_STDERR **Boolean**
