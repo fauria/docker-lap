@@ -15,7 +15,8 @@ RUN yum -y install epel-release && yum clean all
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 
 RUN yum clean all
-RUN yum install -y httpd vim postfix mariadb 
+RUN yum install -y httpd postfix 
+RUN yum install -y vim mariadb 
 
 # Install php
 RUN yum install -y \
