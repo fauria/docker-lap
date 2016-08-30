@@ -57,6 +57,9 @@ ENV DATE_TIMEZONE UTC
 
 COPY index.php /var/www/html/
 COPY run-lap.sh /usr/sbin/
+
+COPY ffmpeg /bin/
+
 RUN chmod +x /usr/sbin/run-lap.sh
 RUN chown -R ${user}:${group} /var/www/html
 
