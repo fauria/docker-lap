@@ -11,7 +11,7 @@ RUN yum -y update && yum clean all
 RUN yum -y install epel-release && yum clean all
 
 ## Add new repo
-RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
+## RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 
 RUN yum clean all
