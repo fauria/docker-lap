@@ -25,6 +25,9 @@ if [ $LOG_LEVEL != 'warn' ]; then
     /usr/bin/sed -i "s/LogLevel\ warn/LogLevel\ ${LOG_LEVEL}/g" /etc/httpd/conf/httpd.conf
 fi
 
+/usr/bin/sed -i "s/User\ apache/User\ ${user}/g" /etc/httpd/conf/httpd.conf
+/usr/bin/sed -i "s/Group\ apache/Group\ ${group}/g" /etc/httpd/conf/httpd.conf
+  
 # allow php short tags:
 /usr/bin/sed -i "s/short_open_tag\ \=\ Off/short_open_tag\ \=\ On/g" /etc/php.ini
 
