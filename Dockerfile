@@ -7,6 +7,7 @@ LABEL Description="Linux + Apache 2.4 + PHP 5.4. CentOS 7 based. Includes .htacc
 
 RUN yum -y update && yum clean all
 RUN yum -y install httpd && yum clean all
+RUN yum -y install gcc php-pear php-devel make openssl-devel && yum clean all
 RUN yum install -y \
 	httpd \
 	postfix \
@@ -28,6 +29,10 @@ RUN yum install -y \
 	php-soap \
 	php-xml \
 	php-xmlrpc
+
+RUN sh -c 'printf "\n" | pecl install mongo'
+RUN sh -c 'echo short_open_tag=On >> /etc/php.ini'
+RUN sh -c 'echo extension=mongo.so >> /etc/php.ini'
 
 ENV LOG_STDOUT **Boolean**
 ENV LOG_STDERR **Boolean**

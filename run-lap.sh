@@ -3,7 +3,7 @@
 function exportBoolean {
     if [ "${!1}" = "**Boolean**" ]; then
             export ${1}=''
-    else 
+    else
             export ${1}='Yes.'
     fi
 }
@@ -25,13 +25,10 @@ if [ $LOG_LEVEL != 'warn' ]; then
     /usr/bin/sed -i "s/LogLevel\ warn/LogLevel\ ${LOG_LEVEL}/g" /etc/httpd/conf/httpd.conf
 fi
 
-# allow php short tags:
-/usr/bin/sed -i "s/short_open_tag\ \=\ Off/short_open_tag\ \=\ On/g" /etc/php.ini
-
 # stdout server info:
 if [ ! $LOG_STDOUT ]; then
 cat << EOB
-    
+
     **********************************************
     *                                            *
     *    Docker image: fauria/lap                *
