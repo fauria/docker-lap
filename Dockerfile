@@ -9,6 +9,7 @@ RUN yum -y update && yum clean all
 RUN yum -y install httpd && yum clean all
 RUN yum -y install gcc php-pear php-devel make openssl-devel && yum clean all
 RUN yum install -y \
+	psmisc \
 	httpd \
 	postfix \
 	php \
@@ -28,11 +29,14 @@ RUN yum install -y \
 	php-snmp \
 	php-soap \
 	php-xml \
-	php-xmlrpc
+	php-xmlrpc \
+	ImageMagick \
+	ImageMagick-devel
 
-RUN sh -c 'printf "\n" | pecl install mongo'
+RUN sh -c 'printf "\n" | pecl install mongo imagick'
 RUN sh -c 'echo short_open_tag=On >> /etc/php.ini'
 RUN sh -c 'echo extension=mongo.so >> /etc/php.ini'
+RUN sh -c 'echo extension=imagick.so >> /etc/php.ini'
 
 ENV LOG_STDOUT **Boolean**
 ENV LOG_STDERR **Boolean**
