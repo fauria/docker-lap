@@ -32,7 +32,7 @@ Includes the following components:
 	* php-xml
 	* php-xmlrpc
 
-Includes support for MongoDB via PECL.
+Includes support for MongoDB and ImageMagick via PECL.
 
 Installation from [Docker registry hub](https://registry.hub.docker.com/u/fauria/lap/).
 ----
