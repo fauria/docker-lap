@@ -38,7 +38,7 @@ Includes the following components:
 
 Includes support for MongoDB and ImageMagick via PECL.
 
-Installation from [Docker registry hub](https://registry.hub.docker.com/u/fauria/lap/).
+Installation from [Docker registry hub](https://registry.hub.docker.com/r/fauria/lap/).
 ----
 
 You can download the image using the following command:
